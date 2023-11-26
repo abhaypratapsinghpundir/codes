@@ -1,0 +1,19 @@
+class Solution {
+    public int[] decompressRLElist(int[] nums) {
+        int arrSize = 0;
+        int n = nums.length;
+        for (int i = 0; i < n ; i += 2) {
+            arrSize += nums[i];
+        }
+        
+        int[] result = new int[arrSize];
+
+        int startIdx = 0;
+        for (int i = 0; i < n ; i += 2) {
+            Arrays.fill(result, startIdx, startIdx + nums[i], nums[i + 1]);
+            startIdx += nums[i];
+        }
+        System.gc();
+        return result;
+    }
+}
